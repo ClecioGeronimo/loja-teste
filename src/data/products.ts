@@ -104,4 +104,50 @@ export const categories: Category[] = [
   }
 ];
 
-// Resto do arquivo permanece o mesmo...
+// Sample featured products
+const products: Product[] = [
+  {
+    id: '1',
+    name: 'Notebook Gamer Pro',
+    description: 'Notebook gamer com RTX 4080 e Intel i9',
+    price: 12999.99,
+    image: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    category: 'notebooks',
+    stock: 10,
+    featured: true
+  },
+  {
+    id: '2',
+    name: 'Monitor Gaming 240Hz',
+    description: 'Monitor gaming de alta performance',
+    price: 2499.99,
+    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    category: 'monitors',
+    stock: 15,
+    featured: true
+  },
+  {
+    id: '3',
+    name: 'Teclado Mecânico RGB',
+    description: 'Teclado mecânico com switches Cherry MX',
+    price: 599.99,
+    image: 'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    category: 'keyboards',
+    stock: 20,
+    featured: true
+  },
+  {
+    id: '4',
+    name: 'Placa de Vídeo RTX 4090',
+    description: 'GPU topo de linha para gaming e trabalho',
+    price: 12999.99,
+    image: 'https://images.pexels.com/photos/5499399/pexels-photo-5499399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    category: 'video-cards',
+    stock: 5,
+    featured: true
+  }
+];
+
+export const getFeaturedProducts = (): Product[] => {
+  return products.filter(product => product.featured);
+};
