@@ -11,6 +11,7 @@
     "analyze": "vite-bundle-analyzer"
   },
   "dependencies": {
+    "@mercadopago/sdk-react": "^0.0.17",
     "@nivo/bar": "^0.84.0",
     "@nivo/core": "^0.84.0",
     "@nivo/line": "^0.84.0",

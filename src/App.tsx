@@ -16,6 +16,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AdminProducts from './pages/admin/Products';
 import AdminOrders from './pages/admin/Orders';
 import AdminCustomers from './pages/admin/Customers';
+import AdminPayments from './pages/admin/Payments';
 import { CartProvider } from './context/CartContext';
 import { UserProvider } from './context/UserContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -86,6 +87,14 @@ function App() {
                     element={
                       <AdminRoute>
                         <AdminCustomers />
+                      </AdminRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin/payments" 
+                    element={
+                      <AdminRoute>
+                        <AdminPayments />
                       </AdminRoute>
                     } 
                   />
