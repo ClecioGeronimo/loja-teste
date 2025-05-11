@@ -27,10 +27,10 @@ const ProductsPage: React.FC = () => {
   const [expandedSection, setExpandedSection] = useState<string | null>('category');
   
   const categoryName = categoryId 
-    ? categories.find(c => c.id === categoryId)?.name || 'Products'
-    : 'All Products';
+    ? categories.find(c => c.id === categoryId)?.name || 'Produtos'
+    : 'Todos os Produtos';
   
-  // Initialize filters when category changes
+  // Inicializar filtros quando a categoria muda
   useEffect(() => {
     setFilterOptions(prev => ({
       ...prev,
@@ -38,7 +38,7 @@ const ProductsPage: React.FC = () => {
     }));
   }, [categoryId]);
   
-  // Apply filters
+  // Aplicar filtros
   useEffect(() => {
     const filtered = filterProducts({
       ...filterOptions,
@@ -49,7 +49,7 @@ const ProductsPage: React.FC = () => {
     setFilteredProducts(filtered);
   }, [filterOptions, priceRange, searchQuery]);
   
-  // Calculate price range based on all products
+  // Calcular faixa de preço baseado em todos os produtos
   useEffect(() => {
     if (products.length > 0) {
       const prices = products.map(p => p.price);
@@ -106,21 +106,21 @@ const ProductsPage: React.FC = () => {
   
   return (
     <div className="pt-20 min-h-screen">
-      {/* Header */}
+      {/* Cabeçalho */}
       <div className="bg-gray-100 py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold mb-2">
-            {searchQuery ? `Search: "${searchQuery}"` : categoryName}
+            {searchQuery ? `Busca: "${searchQuery}"` : categoryName}
           </h1>
           <p className="text-gray-600">
-            {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
+            {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
           </p>
         </div>
       </div>
       
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Filters - Mobile Toggle */}
+          {/* Filtros - Toggle Mobile */}
           <div className="md:hidden mb-4">
             <Button 
               variant="outline"
@@ -128,30 +128,30 @@ const ProductsPage: React.FC = () => {
               leftIcon={<Filter size={16} />}
               fullWidth
             >
-              {showFilters ? 'Hide Filters' : 'Show Filters'}
+              {showFilters ? 'Ocultar Filtros' : 'Mostrar Filtros'}
             </Button>
           </div>
           
-          {/* Filters Sidebar */}
+          {/* Barra Lateral de Filtros */}
           <div className={`md:w-64 flex-shrink-0 ${showFilters ? 'block' : 'hidden md:block'}`}>
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold">Filters</h2>
+                <h2 className="text-lg font-semibold">Filtros</h2>
                 <button
                   onClick={clearFilters}
                   className="text-sm text-blue-600 hover:text-blue-800"
                 >
-                  Clear All
+                  Limpar Tudo
                 </button>
               </div>
               
-              {/* Categories */}
+              {/* Categorias */}
               <div className="mb-6 border-b border-gray-200 pb-6">
                 <button
                   className="flex items-center justify-between w-full font-medium"
                   onClick={() => toggleSection('category')}
                 >
-                  Categories
+                  Categorias
                   {expandedSection === 'category' ? (
                     <ChevronUp size={18} />
                   ) : (
@@ -172,7 +172,7 @@ const ProductsPage: React.FC = () => {
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                       />
                       <label htmlFor="all" className="ml-2 text-sm text-gray-700">
-                        All Products
+                        Todos os Produtos
                       </label>
                     </div>
                     
@@ -196,13 +196,13 @@ const ProductsPage: React.FC = () => {
                 )}
               </div>
               
-              {/* Price Range */}
+              {/* Faixa de Preço */}
               <div className="mb-6 border-b border-gray-200 pb-6">
                 <button
                   className="flex items-center justify-between w-full font-medium"
                   onClick={() => toggleSection('price')}
                 >
-                  Price Range
+                  Faixa de Preço
                   {expandedSection === 'price' ? (
                     <ChevronUp size={18} />
                   ) : (
@@ -215,7 +215,7 @@ const ProductsPage: React.FC = () => {
                     <div className="flex items-center space-x-4">
                       <div>
                         <label htmlFor="min-price" className="block text-sm text-gray-700 mb-1">
-                          Min ($)
+                          Mínimo (R$)
                         </label>
                         <input
                           type="number"
@@ -228,7 +228,7 @@ const ProductsPage: React.FC = () => {
                       </div>
                       <div>
                         <label htmlFor="max-price" className="block text-sm text-gray-700 mb-1">
-                          Max ($)
+                          Máximo (R$)
                         </label>
                         <input
                           type="number"
@@ -244,13 +244,13 @@ const ProductsPage: React.FC = () => {
                 )}
               </div>
               
-              {/* Availability */}
+              {/* Disponibilidade */}
               <div className="mb-6">
                 <button
                   className="flex items-center justify-between w-full font-medium"
                   onClick={() => toggleSection('availability')}
                 >
-                  Availability
+                  Disponibilidade
                   {expandedSection === 'availability' ? (
                     <ChevronUp size={18} />
                   ) : (
@@ -269,7 +269,7 @@ const ProductsPage: React.FC = () => {
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                       />
                       <label htmlFor="in-stock" className="ml-2 text-sm text-gray-700">
-                        In Stock Only
+                        Apenas Em Estoque
                       </label>
                     </div>
                   </div>
@@ -278,17 +278,17 @@ const ProductsPage: React.FC = () => {
             </div>
           </div>
           
-          {/* Product Grid */}
+          {/* Grade de Produtos */}
           <div className="flex-grow">
-            {/* Sort Options */}
+            {/* Opções de Ordenação */}
             <div className="flex justify-between items-center mb-6">
               <div className="text-sm text-gray-600">
-                Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+                Mostrando {filteredProducts.length} {filteredProducts.length === 1 ? 'produto' : 'produtos'}
               </div>
               
               <div className="flex items-center">
                 <label htmlFor="sort" className="text-sm mr-2 hidden sm:inline">
-                  Sort by:
+                  Ordenar por:
                 </label>
                 <select
                   id="sort"
@@ -296,16 +296,16 @@ const ProductsPage: React.FC = () => {
                   onChange={handleSortChange}
                   className="border border-gray-300 rounded-md text-sm py-2 px-3 bg-white"
                 >
-                  <option value="">Featured</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                  <option value="rating">Customer Rating</option>
-                  <option value="newest">Newest Arrivals</option>
+                  <option value="">Destaque</option>
+                  <option value="preco-asc">Preço: Menor para Maior</option>
+                  <option value="preco-desc">Preço: Maior para Menor</option>
+                  <option value="avaliacao">Avaliação dos Clientes</option>
+                  <option value="novos">Mais Recentes</option>
                 </select>
               </div>
             </div>
             
-            {/* Products */}
+            {/* Produtos */}
             {filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredProducts.map(product => (
@@ -315,12 +315,12 @@ const ProductsPage: React.FC = () => {
             ) : (
               <div className="text-center py-16">
                 <div className="text-5xl mb-4">😢</div>
-                <h3 className="text-xl font-medium mb-2">No products found</h3>
+                <h3 className="text-xl font-medium mb-2">Nenhum produto encontrado</h3>
                 <p className="text-gray-600 mb-6">
-                  Try adjusting your filters or search criteria
+                  Tente ajustar seus filtros ou critérios de busca
                 </p>
                 <Button onClick={clearFilters} variant="outline">
-                  Clear Filters
+                  Limpar Filtros
                 </Button>
               </div>
             )}
