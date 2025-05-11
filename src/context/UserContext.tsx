@@ -11,20 +11,20 @@ interface UserContextType {
   isLoading: boolean;
 }
 
-// Mock user data
+// Dados de usuário mockados
 const mockUsers = [
   {
     id: '1',
-    name: 'Demo User',
-    email: 'demo@example.com',
-    password: 'password123',
+    name: 'Usuário Demo',
+    email: 'demo@exemplo.com',
+    password: 'senha123',
     role: 'user',
     avatar: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100'
   },
   {
     id: '2',
-    name: 'Admin User',
-    email: 'admin@example.com',
+    name: 'Administrador',
+    email: 'admin@exemplo.com',
     password: 'admin123',
     role: 'admin',
     avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100'
@@ -37,14 +37,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if user is logged in on component mount
+  // Verificar se o usuário está logado ao iniciar
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       try {
         setUser(JSON.parse(savedUser));
       } catch (error) {
-        console.error('Failed to parse user from localStorage:', error);
+        console.error('Falha ao carregar dados do usuário:', error);
       }
     }
     setIsLoading(false);
@@ -53,7 +53,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string): Promise<void> => {
     setIsLoading(true);
     
-    // Simulate API call
+    // Simular chamada à API
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const foundUser = mockUsers.find(u => u.email === email && u.password === password);
@@ -66,7 +66,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
           resolve();
         } else {
           setIsLoading(false);
-          reject(new Error('Invalid email or password'));
+          reject(new Error('Email ou senha inválidos'));
         }
       }, 1000);
     });
@@ -75,14 +75,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const register = async (name: string, email: string, password: string): Promise<void> => {
     setIsLoading(true);
     
-    // Simulate API call
+    // Simular chamada à API
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const emailExists = mockUsers.some(u => u.email === email);
         
         if (emailExists) {
           setIsLoading(false);
-          reject(new Error('Email already in use'));
+          reject(new Error('Email já está em uso'));
         } else {
           const newUser = {
             id: String(mockUsers.length + 1),
@@ -124,7 +124,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useUser = (): UserContextType => {
   const context = useContext(UserContext);
   if (context === undefined) {
-    throw new Error('useUser must be used within a UserProvider');
+    throw new Error('useUser deve ser usado dentro de um UserProvider');
   }
   return context;
 };
