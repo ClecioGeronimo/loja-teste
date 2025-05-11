@@ -14,7 +14,9 @@ import Button from '../components/ui/Button';
 import { filterProducts, products, categories } from '../data/products';
 import { Product, FilterOptions } from '../types';
 
+// Configuração de paginação
 const PRODUCTS_PER_PAGE = 20; // 5 produtos por linha * 4 linhas = 20 produtos por página
+const MAX_PAGES_SHOWN = 5; // Número máximo de botões de página mostrados
 
 const ProductsPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId?: string }>();
@@ -30,32 +32,44 @@ const ProductsPage: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>('category');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   
   const categoryName = categoryId 
     ? categories.find(c => c.id === categoryId)?.name || 'Produtos'
     : 'Todos os Produtos';
-  
+
   // Inicializar filtros quando a categoria muda
   useEffect(() => {
     setFilterOptions(prev => ({
       ...prev,
       category: categoryId
     }));
-    setCurrentPage(1); // Resetar para primeira página quando mudar categoria
+    setCurrentPage(1);
   }, [categoryId]);
-  
+
   // Aplicar filtros
   useEffect(() => {
-    const filtered = filterProducts({
-      ...filterOptions,
-      minPrice: priceRange[0],
-      maxPrice: priceRange[1],
-      search: searchQuery
-    });
-    setFilteredProducts(filtered);
-    setCurrentPage(1); // Resetar para primeira página quando mudar filtros
+    const loadProducts = async () => {
+      setIsLoading(true);
+      try {
+        const filtered = filterProducts({
+          ...filterOptions,
+          minPrice: priceRange[0],
+          maxPrice: priceRange[1],
+          search: searchQuery
+        });
+        setFilteredProducts(filtered);
+        setCurrentPage(1);
+      } catch (error) {
+        console.error('Erro ao carregar produtos:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadProducts();
   }, [filterOptions, priceRange, searchQuery]);
-  
+
   // Calcular faixa de preço baseado em todos os produtos
   useEffect(() => {
     if (products.length > 0) {
@@ -65,7 +79,7 @@ const ProductsPage: React.FC = () => {
       setPriceRange([minPrice, maxPrice]);
     }
   }, []);
-  
+
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
       setExpandedSection(null);
@@ -73,14 +87,14 @@ const ProductsPage: React.FC = () => {
       setExpandedSection(section);
     }
   };
-  
+
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterOptions({
       ...filterOptions,
       sortBy: e.target.value as any
     });
   };
-  
+
   const handlePriceChange = (type: 'min' | 'max', value: string) => {
     const numValue = parseInt(value, 10);
     if (isNaN(numValue)) return;
@@ -91,14 +105,14 @@ const ProductsPage: React.FC = () => {
       setPriceRange([priceRange[0], numValue]);
     }
   };
-  
+
   const handleInStockChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterOptions({
       ...filterOptions,
       inStock: e.target.checked
     });
   };
-  
+
   const clearFilters = () => {
     const prices = products.map(p => p.price);
     const minPrice = Math.floor(Math.min(...prices));
@@ -122,7 +136,34 @@ const ProductsPage: React.FC = () => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  
+
+  // Gerar array de páginas para exibição
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = [];
+    
+    if (totalPages <= MAX_PAGES_SHOWN) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    // Sempre mostrar primeira página
+    pages.push(1);
+
+    // Calcular páginas do meio
+    let start = Math.max(2, currentPage - Math.floor(MAX_PAGES_SHOWN / 2));
+    let end = Math.min(totalPages - 1, start + MAX_PAGES_SHOWN - 3);
+    
+    if (start > 2) pages.push('...');
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    if (end < totalPages - 1) pages.push('...');
+
+    // Sempre mostrar última página
+    pages.push(totalPages);
+
+    return pages;
+  };
+
   return (
     <div className="pt-20 min-h-screen">
       {/* Cabeçalho */}
@@ -325,7 +366,11 @@ const ProductsPage: React.FC = () => {
             </div>
             
             {/* Produtos */}
-            {filteredProducts.length > 0 ? (
+            {isLoading ? (
+              <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+              </div>
+            ) : filteredProducts.length > 0 ? (
               <>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {currentProducts.map(product => (
@@ -345,16 +390,20 @@ const ProductsPage: React.FC = () => {
                       <ChevronLeft size={16} />
                     </Button>
                     
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                      <Button
-                        key={page}
-                        variant={currentPage === page ? "primary" : "outline"}
-                        size="sm"
-                        onClick={() => handlePageChange(page)}
-                        className="min-w-[40px]"
-                      >
-                        {page}
-                      </Button>
+                    {getPageNumbers().map((page, index) => (
+                      typeof page === 'number' ? (
+                        <Button
+                          key={index}
+                          variant={currentPage === page ? "primary" : "outline"}
+                          size="sm"
+                          onClick={() => handlePageChange(page)}
+                          className="min-w-[40px]"
+                        >
+                          {page}
+                        </Button>
+                      ) : (
+                        <span key={index} className="px-2">...</span>
+                      )
                     ))}
                     
                     <Button
