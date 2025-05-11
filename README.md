@@ -2,6 +2,8 @@
 
 Uma plataforma de e-commerce moderna e completa construída com React, TypeScript e Tailwind CSS.
 
+Desenvolvido por [Clécio Florencio](https://github.com/clecioflorencio)
+
 ## ✨ Funcionalidades
 
 - 🛒 Carrinho de compras
@@ -28,7 +30,7 @@ Uma plataforma de e-commerce moderna e completa construída com React, TypeScrip
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/loja-virtual.git
+git clone https://github.com/clecioflorencio/loja-virtual.git
 
 # Entre na pasta do projeto
 cd loja-virtual
@@ -124,3 +126,9 @@ src/
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Desenvolvedor
+
+**Clécio Florencio**
+- GitHub: [@clecioflorencio](https://github.com/clecioflorencio)
+- LinkedIn: [Clécio Florencio](https://linkedin.com/in/clecioflorencio)
