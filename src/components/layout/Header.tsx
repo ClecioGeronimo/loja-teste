@@ -65,28 +65,28 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+      isScrolled ? 'bg-white shadow-md' : 'bg-black/50 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <ShoppingBag className="w-8 h-8 text-primary-600" />
-            <span className="ml-2 text-xl font-bold text-gray-800">CSNET STORE</span>
+            <ShoppingBag className={`w-8 h-8 ${isScrolled ? 'text-primary-600' : 'text-white'}`} />
+            <span className={`ml-2 text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>CSNET STORE</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/products" className="text-gray-600 hover:text-primary-600 font-medium">
+            <Link to="/products" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Todos os Produtos
             </Link>
-            <Link to="/products/laptops" className="text-gray-600 hover:text-primary-600 font-medium">
+            <Link to="/products/laptops" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Notebooks
             </Link>
-            <Link to="/products/components" className="text-gray-600 hover:text-primary-600 font-medium">
+            <Link to="/products/components" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Componentes
             </Link>
-            <Link to="/products/peripherals" className="text-gray-600 hover:text-primary-600 font-medium">
+            <Link to="/products/peripherals" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Periféricos
             </Link>
           </nav>
@@ -95,17 +95,17 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button 
               onClick={toggleSearch}
-              className="p-2 rounded-full hover:bg-gray-100 text-gray-600"
+              className={`p-2 rounded-full hover:bg-white/10 ${isScrolled ? 'text-gray-600' : 'text-white'}`}
               aria-label="Pesquisar"
             >
               <Search size={20} />
             </button>
             
-            <Link to="/wishlist" className="p-2 rounded-full hover:bg-gray-100 text-gray-600 relative">
+            <Link to="/wishlist" className={`p-2 rounded-full hover:bg-white/10 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <Heart size={20} />
             </Link>
             
-            <Link to="/cart" className="p-2 rounded-full hover:bg-gray-100 text-gray-600 relative">
+            <Link to="/cart" className={`p-2 rounded-full hover:bg-white/10 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <ShoppingCart size={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -116,11 +116,11 @@ const Header: React.FC = () => {
             
             {isAuthenticated ? (
               <div className="relative group">
-                <Link to="/account" className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100">
+                <Link to="/account" className={`flex items-center space-x-2 p-2 rounded-full hover:bg-white/10 ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
                   {user?.avatar ? (
                     <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full" />
                   ) : (
-                    <User size={20} className="text-gray-600" />
+                    <User size={20} />
                   )}
                 </Link>
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right">
@@ -145,9 +145,10 @@ const Header: React.FC = () => {
             ) : (
               <Link to="/login">
                 <Button 
-                  variant="primary" 
+                  variant={isScrolled ? "primary" : "outline"} 
                   size="sm"
                   leftIcon={<LogIn size={18} />}
+                  className={!isScrolled ? "border-white text-white hover:bg-white/20" : ""}
                 >
                   Entrar
                 </Button>
@@ -157,7 +158,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center space-x-4">
-            <Link to="/cart" className="p-2 text-gray-600 relative">
+            <Link to="/cart" className={`p-2 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <ShoppingCart size={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -168,7 +169,7 @@ const Header: React.FC = () => {
             
             <button 
               onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-gray-600"
+              className={`p-2 rounded-md ${isScrolled ? 'text-gray-600' : 'text-white'}`}
               aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
