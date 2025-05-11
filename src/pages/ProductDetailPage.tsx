@@ -35,10 +35,10 @@ const ProductDetailPage: React.FC = () => {
   if (!product) {
     return (
       <div className="pt-20 min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <p className="text-gray-600 mb-8">The product you're looking for doesn't exist or has been removed.</p>
+        <h1 className="text-2xl font-bold mb-4">Produto não encontrado</h1>
+        <p className="text-gray-600 mb-8">O produto que você está procurando não existe ou foi removido.</p>
         <Button variant="primary" onClick={() => navigate('/products')}>
-          Back to Products
+          Voltar para Produtos
         </Button>
       </div>
     );
@@ -66,13 +66,13 @@ const ProductDetailPage: React.FC = () => {
   };
   
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'BRL',
     }).format(price);
   };
   
-  // Get similar products (same category)
+  // Obter produtos similares (mesma categoria)
   const similarProducts = product ? getProductById(product.id) 
     ? Array.from({ length: 4 }).map(() => getProductById(product.id === '1' ? '2' : '1')!) 
     : [] 
@@ -80,7 +80,7 @@ const ProductDetailPage: React.FC = () => {
   
   return (
     <div className="pt-20 min-h-screen bg-white">
-      {/* Breadcrumb */}
+      {/* Navegação */}
       <div className="bg-gray-100 py-4">
         <div className="container mx-auto px-4">
           <button 
@@ -88,14 +88,14 @@ const ProductDetailPage: React.FC = () => {
             className="flex items-center text-gray-600 hover:text-gray-900"
           >
             <ArrowLeft size={16} className="mr-2" />
-            Back
+            Voltar
           </button>
         </div>
       </div>
       
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Product Images */}
+          {/* Imagens do Produto */}
           <div className="lg:w-1/2">
             <div className="mb-4 aspect-square overflow-hidden bg-gray-100 rounded-lg">
               <img 
@@ -115,14 +115,14 @@ const ProductDetailPage: React.FC = () => {
                       index === activeImageIndex ? 'ring-2 ring-blue-500' : 'ring-1 ring-gray-200'
                     }`}
                   >
-                    <img src={image} alt={`${product.name} - View ${index + 1}`} className="w-full h-full object-cover" />
+                    <img src={image} alt={`${product.name} - Visualização ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
             )}
           </div>
           
-          {/* Product Info */}
+          {/* Informações do Produto */}
           <div className="lg:w-1/2">
             <div className="mb-6">
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
@@ -138,7 +138,7 @@ const ProductDetailPage: React.FC = () => {
                     />
                   ))}
                   <span className="ml-2 text-sm text-gray-600">
-                    {product.rating.toFixed(1)} ({product.reviews} reviews)
+                    {product.rating.toFixed(1)} ({product.reviews} avaliações)
                   </span>
                 </div>
               </div>
@@ -153,7 +153,7 @@ const ProductDetailPage: React.FC = () => {
                       {formatPrice(product.price)}
                     </span>
                     <span className="ml-3 bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">
-                      Save {formatPrice(product.price - product.discountedPrice)}
+                      Economize {formatPrice(product.price - product.discountedPrice)}
                     </span>
                   </div>
                 ) : (
@@ -173,16 +173,16 @@ const ProductDetailPage: React.FC = () => {
                     {product.inStock ? (
                       <>
                         <Check size={18} className="mr-1" />
-                        <span>In Stock</span>
+                        <span>Em Estoque</span>
                       </>
                     ) : (
-                      <span>Out of Stock</span>
+                      <span>Fora de Estoque</span>
                     )}
                   </div>
                 </div>
               </div>
               
-              {/* Product Options */}
+              {/* Opções do Produto */}
               {product.options && product.options.length > 0 && (
                 <div className="space-y-6 mb-6">
                   {product.options.map(option => (
@@ -210,11 +210,11 @@ const ProductDetailPage: React.FC = () => {
                 </div>
               )}
               
-              {/* Quantity & Add to Cart */}
+              {/* Quantidade e Adicionar ao Carrinho */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                 <div>
                   <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
-                    Quantity
+                    Quantidade
                   </label>
                   <QuantitySelector
                     quantity={quantity}
@@ -233,7 +233,7 @@ const ProductDetailPage: React.FC = () => {
                     className="flex-1"
                     disabled={!product.inStock}
                   >
-                    Add to Cart
+                    Adicionar ao Carrinho
                   </Button>
                   
                   <Button
@@ -242,14 +242,14 @@ const ProductDetailPage: React.FC = () => {
                     leftIcon={<Heart size={18} className={inWishlist ? 'fill-white' : ''} />}
                     onClick={handleWishlistToggle}
                   >
-                    {inWishlist ? 'Saved' : 'Save'}
+                    {inWishlist ? 'Salvo' : 'Salvar'}
                   </Button>
                 </div>
               </div>
               
-              {/* Social Sharing */}
+              {/* Compartilhar */}
               <div className="flex items-center mt-6">
-                <span className="text-sm text-gray-600 mr-3">Share:</span>
+                <span className="text-sm text-gray-600 mr-3">Compartilhar:</span>
                 <div className="flex space-x-2">
                   <button className="p-2 rounded-full hover:bg-gray-100 text-gray-600">
                     <Share2 size={18} />
@@ -258,10 +258,10 @@ const ProductDetailPage: React.FC = () => {
               </div>
             </div>
             
-            {/* Product Specifications */}
+            {/* Especificações do Produto */}
             {product.specifications && Object.keys(product.specifications).length > 0 && (
               <div className="mt-8 border-t border-gray-200 pt-8">
-                <h2 className="text-xl font-bold mb-4">Specifications</h2>
+                <h2 className="text-xl font-bold mb-4">Especificações</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                   {Object.entries(product.specifications).map(([key, value]) => (
                     <div key={key} className="flex py-2 border-b border-gray-100">
@@ -275,9 +275,9 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Similar Products */}
+        {/* Produtos Similares */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
+          <h2 className="text-2xl font-bold mb-6">Você Também Pode Gostar</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {similarProducts.map(product => (
               <ProductCard key={product.id} product={product} />
