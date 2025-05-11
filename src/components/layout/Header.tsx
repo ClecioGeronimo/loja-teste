@@ -65,28 +65,30 @@ const Header: React.FC = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md' : 'bg-black/50 backdrop-blur-sm'
+      isScrolled ? 'bg-white shadow-md' : 'bg-blue-600'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <ShoppingBag className={`w-8 h-8 ${isScrolled ? 'text-blue-600' : 'text-white'}`} />
-            <span className={`ml-2 text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>CSNET STORE</span>
+            <span className={`ml-2 text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+              CSNET STORE
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/products" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products" className={`font-medium transition-colors ${isScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-blue-100'}`}>
               Todos os Produtos
             </Link>
-            <Link to="/products/laptops" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/laptops" className={`font-medium transition-colors ${isScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-blue-100'}`}>
               Notebooks
             </Link>
-            <Link to="/products/components" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/components" className={`font-medium transition-colors ${isScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-blue-100'}`}>
               Componentes
             </Link>
-            <Link to="/products/peripherals" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/peripherals" className={`font-medium transition-colors ${isScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white hover:text-blue-100'}`}>
               Periféricos
             </Link>
           </nav>
@@ -101,7 +103,7 @@ const Header: React.FC = () => {
               <Search size={20} />
             </button>
             
-            <Link to="/wishlist" className={`p-2 rounded-full hover:bg-white/10 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/wishlist" className={`p-2 rounded-full hover:bg-white/10 ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <Heart size={20} />
             </Link>
             
@@ -145,7 +147,7 @@ const Header: React.FC = () => {
             ) : (
               <Link to="/login">
                 <Button 
-                  variant={isScrolled ? "primary" : "outline"} 
+                  variant={isScrolled ? "primary" : "outline"}
                   size="sm"
                   leftIcon={<LogIn size={18} />}
                   className={!isScrolled ? "border-white text-white hover:bg-white/20" : ""}
