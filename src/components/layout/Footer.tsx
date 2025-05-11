@@ -16,16 +16,16 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+          {/* Informações da Empresa */}
           <div>
             <div className="flex items-center mb-4">
               <ShoppingBag className="w-8 h-8 text-blue-500" />
-              <span className="ml-2 text-xl font-bold text-white">ElegantStore</span>
+              <span className="ml-2 text-xl font-bold text-white">CSNET STORE</span>
             </div>
             <p className="mb-4 text-gray-400">
-              Your one-stop shop for high-quality products at affordable prices. 
-              We offer a curated selection of the best items in electronics, fashion, 
-              home decor, and more.
+              Sua loja premium de tecnologia. Oferecemos uma seleção cuidadosamente 
+              curada dos melhores produtos em informática e tecnologia com qualidade 
+              e preços competitivos.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -67,100 +67,100 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Shop */}
+          {/* Loja */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Shop</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Loja</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/products" className="text-gray-400 hover:text-white transition-colors">
-                  All Products
+                  Todos os Produtos
                 </Link>
               </li>
               <li>
-                <Link to="/products/electronics" className="text-gray-400 hover:text-white transition-colors">
-                  Electronics
+                <Link to="/products/laptops" className="text-gray-400 hover:text-white transition-colors">
+                  Notebooks
                 </Link>
               </li>
               <li>
-                <Link to="/products/clothing" className="text-gray-400 hover:text-white transition-colors">
-                  Clothing
+                <Link to="/products/components" className="text-gray-400 hover:text-white transition-colors">
+                  Componentes
                 </Link>
               </li>
               <li>
-                <Link to="/products/home-decor" className="text-gray-400 hover:text-white transition-colors">
-                  Home Decor
+                <Link to="/products/peripherals" className="text-gray-400 hover:text-white transition-colors">
+                  Periféricos
                 </Link>
               </li>
               <li>
-                <Link to="/products/books" className="text-gray-400 hover:text-white transition-colors">
-                  Books
+                <Link to="/products/networking" className="text-gray-400 hover:text-white transition-colors">
+                  Redes
                 </Link>
               </li>
               <li>
                 <Link to="/sale" className="text-gray-400 hover:text-white transition-colors">
-                  Sale
+                  Promoções
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Customer Service */}
+          {/* Atendimento */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Customer Service</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Atendimento</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
-                  Contact Us
+                  Fale Conosco
                 </Link>
               </li>
               <li>
                 <Link to="/shipping" className="text-gray-400 hover:text-white transition-colors">
-                  Shipping & Delivery
+                  Entrega
                 </Link>
               </li>
               <li>
                 <Link to="/returns" className="text-gray-400 hover:text-white transition-colors">
-                  Returns & Exchanges
+                  Trocas e Devoluções
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-gray-400 hover:text-white transition-colors">
-                  FAQs
+                  Dúvidas Frequentes
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
-                  Terms & Conditions
+                  Termos de Uso
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">
-                  Privacy Policy
+                  Política de Privacidade
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contato */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Contato</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={20} className="mt-1 mr-3 flex-shrink-0 text-blue-500" />
                 <span>
-                  1234 Market Street<br />
-                  San Francisco, CA 94103<br />
-                  United States
+                  Rua Exemplo, 123<br />
+                  Centro - São Paulo/SP<br />
+                  CEP: 01234-567
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-3 flex-shrink-0 text-blue-500" />
-                <span>(123) 456-7890</span>
+                <span>(11) 1234-5678</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-3 flex-shrink-0 text-blue-500" />
-                <a href="mailto:support@elegantstore.com" className="hover:text-white transition-colors">
-                  support@elegantstore.com
+                <a href="mailto:contato@csnetstore.com.br" className="hover:text-white transition-colors">
+                  contato@csnetstore.com.br
                 </a>
               </li>
             </ul>
@@ -171,7 +171,7 @@ const Footer: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} ElegantStore. All rights reserved.
+            &copy; {new Date().getFullYear()} CSNET STORE. Desenvolvido por Clécio Florencio. Todos os direitos reservados.
           </div>
           <div className="flex space-x-4 md:justify-end">
             <img src="https://www.pngall.com/wp-content/uploads/2016/07/Visa-Logo-PNG-Image.png" alt="Visa" className="h-6" />
