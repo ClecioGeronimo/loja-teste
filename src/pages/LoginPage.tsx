@@ -106,6 +106,7 @@ const LoginPage: React.FC = () => {
                 isLoading={isLoading}
                 fullWidth
                 leftIcon={<LogIn size={18} />}
+                className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
               >
                 Entrar
               </Button>
@@ -122,7 +123,7 @@ const LoginPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-3">
+            <div className="mt-6">
               <Link to="/register">
                 <Button
                   variant="outline"
