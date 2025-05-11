@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
-import Button from '../components/ui/Button';
+import Button from '../ui/Button';
 
 const Header: React.FC = () => {
   const { totalItems } = useCart();
