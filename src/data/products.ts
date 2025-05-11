@@ -63,8 +63,7 @@ export const categories: Category[] = [
   }
 ];
 
-// Sample featured products data
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: '1',
     name: 'Notebook Pro X',
@@ -115,6 +114,14 @@ const products: Product[] = [
   }
 ];
 
+export function getProductById(id: string): Product | undefined {
+  return products.find(product => product.id === id);
+}
+
+export function getProductsByCategory(categoryId: string): Product[] {
+  return products.filter(product => product.category === categoryId);
+}
+
 export function getFeaturedProducts(): Product[] {
   return products.filter(product => product.featured);
 }
@@ -146,5 +153,3 @@ export function filterProducts(options: FilterOptions): Product[] {
     }
   });
 }
-
-export { products };
