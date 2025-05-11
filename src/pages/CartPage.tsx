@@ -15,7 +15,7 @@ const CartPage: React.FC = () => {
   const [discount, setDiscount] = useState(0);
   
   const shipping = subtotal > 50 ? 0 : 5.99;
-  const tax = subtotal * 0.07; // 7% tax rate
+  const tax = subtotal * 0.07; // 7% de imposto
   const total = subtotal + shipping + tax - discount;
   
   const handleQuantityChange = (productId: string, quantity: number) => {
@@ -29,20 +29,20 @@ const CartPage: React.FC = () => {
   const handleApplyCoupon = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Mock coupon validation
-    if (couponCode.toUpperCase() === 'DISCOUNT20') {
+    // Validação de cupom mockada
+    if (couponCode.toUpperCase() === 'DESCONTO20') {
       setDiscount(subtotal * 0.2);
       setCouponError('');
     } else {
       setDiscount(0);
-      setCouponError('Invalid coupon code');
+      setCouponError('Cupom inválido');
     }
   };
   
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'BRL',
     }).format(price);
   };
   
@@ -63,13 +63,13 @@ const CartPage: React.FC = () => {
               <div className="text-gray-400 mb-4">
                 <ShoppingCart size={64} className="mx-auto" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+              <h1 className="text-2xl font-bold text-gray-900 mb-4">Seu carrinho está vazio</h1>
               <p className="text-gray-600 mb-8">
-                Looks like you haven't added any products to your cart yet.
+                Parece que você ainda não adicionou nenhum produto ao seu carrinho.
               </p>
               <Link to="/products">
                 <Button variant="primary" fullWidth>
-                  Continue Shopping
+                  Continuar Comprando
                 </Button>
               </Link>
             </div>
@@ -82,15 +82,15 @@ const CartPage: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold mb-8">Carrinho de Compras</h1>
         
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Cart Items */}
+          {/* Itens do Carrinho */}
           <div className="lg:w-2/3">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-medium">
-                  Cart Items ({items.reduce((sum, item) => sum + item.quantity, 0)})
+                  Itens do Carrinho ({items.reduce((sum, item) => sum + item.quantity, 0)})
                 </h2>
               </div>
               
@@ -149,7 +149,7 @@ const CartPage: React.FC = () => {
                             className="text-red-600 hover:text-red-800 flex items-center"
                           >
                             <Trash2 size={18} className="mr-1" />
-                            <span className="text-sm hidden sm:inline">Remove</span>
+                            <span className="text-sm hidden sm:inline">Remover</span>
                           </button>
                         </div>
                       </div>
@@ -160,24 +160,24 @@ const CartPage: React.FC = () => {
               
               <div className="p-6 bg-gray-50 flex justify-between items-center">
                 <Link to="/products" className="text-blue-600 hover:text-blue-800 flex items-center">
-                  <span className="mr-1">Continue Shopping</span>
+                  <span className="mr-1">Continuar Comprando</span>
                 </Link>
                 
                 <button 
                   onClick={() => clearCart()}
                   className="text-red-600 hover:text-red-800"
                 >
-                  Clear Cart
+                  Limpar Carrinho
                 </button>
               </div>
             </div>
           </div>
           
-          {/* Order Summary */}
+          {/* Resumo do Pedido */}
           <div className="lg:w-1/3">
             <div className="bg-white rounded-lg shadow-sm">
               <div className="p-6 border-b border-gray-200">
-                <h2 className="text-lg font-medium">Order Summary</h2>
+                <h2 className="text-lg font-medium">Resumo do Pedido</h2>
               </div>
               
               <div className="p-6">
@@ -189,20 +189,20 @@ const CartPage: React.FC = () => {
                   
                   {discount > 0 && (
                     <div className="flex justify-between text-green-600">
-                      <span>Discount</span>
+                      <span>Desconto</span>
                       <span>-{formatPrice(discount)}</span>
                     </div>
                   )}
                   
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Shipping</span>
+                    <span className="text-gray-600">Frete</span>
                     <span className="text-gray-900">
-                      {shipping === 0 ? 'Free' : formatPrice(shipping)}
+                      {shipping === 0 ? 'Grátis' : formatPrice(shipping)}
                     </span>
                   </div>
                   
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax (7%)</span>
+                    <span className="text-gray-600">Impostos (7%)</span>
                     <span className="text-gray-900">{formatPrice(tax)}</span>
                   </div>
                   
@@ -214,7 +214,7 @@ const CartPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Coupon Code */}
+                {/* Cupom de Desconto */}
                 <div className="mt-6">
                   <form onSubmit={handleApplyCoupon}>
                     <div className="flex">
@@ -222,7 +222,7 @@ const CartPage: React.FC = () => {
                         type="text"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value)}
-                        placeholder="Coupon Code"
+                        placeholder="Cupom de Desconto"
                         className="flex-1 border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                       <Button 
@@ -231,14 +231,14 @@ const CartPage: React.FC = () => {
                         className="rounded-l-none"
                         disabled={!couponCode}
                       >
-                        Apply
+                        Aplicar
                       </Button>
                     </div>
                     {couponError && (
                       <p className="mt-1 text-red-600 text-sm">{couponError}</p>
                     )}
                     {discount > 0 && (
-                      <p className="mt-1 text-green-600 text-sm">Coupon applied successfully!</p>
+                      <p className="mt-1 text-green-600 text-sm">Cupom aplicado com sucesso!</p>
                     )}
                   </form>
                 </div>
@@ -251,7 +251,7 @@ const CartPage: React.FC = () => {
                     onClick={handleCheckout}
                     rightIcon={<ArrowRight size={18} />}
                   >
-                    Proceed to Checkout
+                    Finalizar Compra
                   </Button>
                 </div>
               </div>
