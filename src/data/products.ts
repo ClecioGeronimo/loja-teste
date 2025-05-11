@@ -151,3 +151,5 @@ const products: Product[] = [
 export const getFeaturedProducts = (): Product[] => {
   return products.filter(product => product.featured);
 };
+
+export { products }
