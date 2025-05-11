@@ -5,12 +5,16 @@ import {
   SortDesc, 
   X, 
   ChevronDown, 
-  ChevronUp 
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import ProductCard from '../components/ui/ProductCard';
 import Button from '../components/ui/Button';
 import { filterProducts, products, categories } from '../data/products';
 import { Product, FilterOptions } from '../types';
+
+const PRODUCTS_PER_PAGE = 20; // 5 produtos por linha * 4 linhas = 20 produtos por página
 
 const ProductsPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId?: string }>();
@@ -25,6 +29,7 @@ const ProductsPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
   const [showFilters, setShowFilters] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>('category');
+  const [currentPage, setCurrentPage] = useState(1);
   
   const categoryName = categoryId 
     ? categories.find(c => c.id === categoryId)?.name || 'Produtos'
@@ -36,6 +41,7 @@ const ProductsPage: React.FC = () => {
       ...prev,
       category: categoryId
     }));
+    setCurrentPage(1); // Resetar para primeira página quando mudar categoria
   }, [categoryId]);
   
   // Aplicar filtros
@@ -47,6 +53,7 @@ const ProductsPage: React.FC = () => {
       search: searchQuery
     });
     setFilteredProducts(filtered);
+    setCurrentPage(1); // Resetar para primeira página quando mudar filtros
   }, [filterOptions, priceRange, searchQuery]);
   
   // Calcular faixa de preço baseado em todos os produtos
@@ -102,6 +109,18 @@ const ProductsPage: React.FC = () => {
       category: categoryId,
       inStock: true
     });
+    setCurrentPage(1);
+  };
+
+  // Paginação
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+  const currentProducts = filteredProducts.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   return (
@@ -134,7 +153,7 @@ const ProductsPage: React.FC = () => {
           
           {/* Barra Lateral de Filtros */}
           <div className={`md:w-64 flex-shrink-0 ${showFilters ? 'block' : 'hidden md:block'}`}>
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold">Filtros</h2>
                 <button
@@ -283,7 +302,7 @@ const ProductsPage: React.FC = () => {
             {/* Opções de Ordenação */}
             <div className="flex justify-between items-center mb-6">
               <div className="text-sm text-gray-600">
-                Mostrando {filteredProducts.length} {filteredProducts.length === 1 ? 'produto' : 'produtos'}
+                Mostrando {Math.min(startIndex + 1, filteredProducts.length)}-{Math.min(endIndex, filteredProducts.length)} de {filteredProducts.length} {filteredProducts.length === 1 ? 'produto' : 'produtos'}
               </div>
               
               <div className="flex items-center">
@@ -307,11 +326,48 @@ const ProductsPage: React.FC = () => {
             
             {/* Produtos */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                  {currentProducts.map(product => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+
+                {/* Paginação */}
+                {totalPages > 1 && (
+                  <div className="mt-8 flex justify-center items-center space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      <ChevronLeft size={16} />
+                    </Button>
+                    
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <Button
+                        key={page}
+                        variant={currentPage === page ? "primary" : "outline"}
+                        size="sm"
+                        onClick={() => handlePageChange(page)}
+                        className="min-w-[40px]"
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      <ChevronRight size={16} />
+                    </Button>
+                  </div>
+                )}
+              </>
             ) : (
               <div className="text-center py-16">
                 <div className="text-5xl mb-4">😢</div>
