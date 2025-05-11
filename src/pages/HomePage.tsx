@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
         <div 
           className="relative h-[80vh] bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('https://images.pexels.com/photos/3965545/pexels-photo-3965545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`
+            backgroundImage: `url('https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`
           }}
         >
           <div className="container mx-auto px-4 h-full flex items-center relative z-20">
