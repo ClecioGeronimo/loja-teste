@@ -63,4 +63,50 @@ export const categories: Category[] = [
   }
 ];
 
-// Mantenha o resto do arquivo como está...
+// Sample featured products data
+const products: Product[] = [
+  {
+    id: '1',
+    name: 'Notebook Pro X',
+    description: 'Notebook de última geração para profissionais',
+    price: 4999.99,
+    category: 'laptops',
+    image: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    stock: 10,
+    featured: true
+  },
+  {
+    id: '2',
+    name: 'Desktop Gamer Elite',
+    description: 'PC Gamer de alto desempenho',
+    price: 8999.99,
+    category: 'desktops',
+    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    stock: 5,
+    featured: true
+  },
+  {
+    id: '3',
+    name: 'Monitor Ultra Wide',
+    description: 'Monitor curvo de 34 polegadas',
+    price: 2999.99,
+    category: 'monitors',
+    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    stock: 15,
+    featured: true
+  },
+  {
+    id: '4',
+    name: 'Teclado Mecânico RGB',
+    description: 'Teclado mecânico com iluminação RGB',
+    price: 499.99,
+    category: 'peripherals',
+    image: 'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    stock: 20,
+    featured: true
+  }
+];
+
+export function getFeaturedProducts(): Product[] {
+  return products.filter(product => product.featured);
+}
