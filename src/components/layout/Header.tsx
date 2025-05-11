@@ -71,22 +71,22 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <ShoppingBag className={`w-8 h-8 ${isScrolled ? 'text-primary-600' : 'text-white'}`} />
+            <ShoppingBag className={`w-8 h-8 ${isScrolled ? 'text-blue-600' : 'text-white'}`} />
             <span className={`ml-2 text-xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>CSNET STORE</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/products" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Todos os Produtos
             </Link>
-            <Link to="/products/laptops" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/laptops" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Notebooks
             </Link>
-            <Link to="/products/components" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/components" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Componentes
             </Link>
-            <Link to="/products/peripherals" className={`font-medium hover:text-primary-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
+            <Link to="/products/peripherals" className={`font-medium hover:text-blue-600 transition-colors ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               Periféricos
             </Link>
           </nav>
@@ -108,7 +108,7 @@ const Header: React.FC = () => {
             <Link to="/cart" className={`p-2 rounded-full hover:bg-white/10 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <ShoppingCart size={20} />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
             <Link to="/cart" className={`p-2 relative ${isScrolled ? 'text-gray-600' : 'text-white'}`}>
               <ShoppingCart size={20} />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
@@ -185,7 +185,7 @@ const Header: React.FC = () => {
         <div className="flex flex-col h-full p-4">
           <div className="flex justify-between items-center mb-8">
             <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
-              <ShoppingBag className="w-8 h-8 text-primary-600" />
+              <ShoppingBag className="w-8 h-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold text-gray-800">CSNET STORE</span>
             </Link>
             <button 
@@ -202,7 +202,7 @@ const Header: React.FC = () => {
               <input
                 type="text"
                 placeholder="Pesquisar produtos..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -211,28 +211,28 @@ const Header: React.FC = () => {
           <nav className="flex flex-col space-y-4 mb-8">
             <Link 
               to="/products" 
-              className="text-gray-800 hover:text-primary-600 font-medium py-2"
+              className="text-gray-800 hover:text-blue-600 font-medium py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Todos os Produtos
             </Link>
             <Link 
               to="/products/laptops" 
-              className="text-gray-800 hover:text-primary-600 font-medium py-2"
+              className="text-gray-800 hover:text-blue-600 font-medium py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Notebooks
             </Link>
             <Link 
               to="/products/components" 
-              className="text-gray-800 hover:text-primary-600 font-medium py-2"
+              className="text-gray-800 hover:text-blue-600 font-medium py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Componentes
             </Link>
             <Link 
               to="/products/peripherals" 
-              className="text-gray-800 hover:text-primary-600 font-medium py-2"
+              className="text-gray-800 hover:text-blue-600 font-medium py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Periféricos
@@ -242,7 +242,7 @@ const Header: React.FC = () => {
           <div className="flex flex-col space-y-4">
             <Link 
               to="/wishlist" 
-              className="flex items-center text-gray-800 hover:text-primary-600 py-2"
+              className="flex items-center text-gray-800 hover:text-blue-600 py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Heart size={20} className="mr-3" />
@@ -253,7 +253,7 @@ const Header: React.FC = () => {
               <>
                 <Link 
                   to="/account" 
-                  className="flex items-center text-gray-800 hover:text-primary-600 py-2"
+                  className="flex items-center text-gray-800 hover:text-blue-600 py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <User size={20} className="mr-3" />
@@ -262,7 +262,7 @@ const Header: React.FC = () => {
                 
                 <Link 
                   to="/orders" 
-                  className="flex items-center text-gray-800 hover:text-primary-600 py-2"
+                  className="flex items-center text-gray-800 hover:text-blue-600 py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <ShoppingBag size={20} className="mr-3" />
@@ -271,7 +271,7 @@ const Header: React.FC = () => {
                 
                 <button 
                   onClick={handleLogout}
-                  className="flex items-center text-gray-800 hover:text-primary-600 py-2"
+                  className="flex items-center text-gray-800 hover:text-blue-600 py-2"
                 >
                   <LogOut size={20} className="mr-3" />
                   <span>Sair</span>
@@ -321,7 +321,7 @@ const Header: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Pesquisar produtos..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               </div>
