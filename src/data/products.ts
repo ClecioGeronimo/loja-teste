@@ -1,5 +1,4 @@
-import { Product, Category } from '../types';
-import { getFeaturedProducts } from '/src/data/products';
+import { Product, Category, FilterOptions } from '../types';
 
 export const categories: Category[] = [
   {
@@ -72,9 +71,11 @@ const products: Product[] = [
     description: 'Notebook de última geração para profissionais',
     price: 4999.99,
     category: 'laptops',
-    image: 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    stock: 10,
-    featured: true
+    images: ['https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'],
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    reviews: 128
   },
   {
     id: '2',
@@ -82,9 +83,11 @@ const products: Product[] = [
     description: 'PC Gamer de alto desempenho',
     price: 8999.99,
     category: 'desktops',
-    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    stock: 5,
-    featured: true
+    images: ['https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'],
+    inStock: true,
+    featured: true,
+    rating: 4.8,
+    reviews: 96
   },
   {
     id: '3',
@@ -92,9 +95,11 @@ const products: Product[] = [
     description: 'Monitor curvo de 34 polegadas',
     price: 2999.99,
     category: 'monitors',
-    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    stock: 15,
-    featured: true
+    images: ['https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'],
+    inStock: true,
+    featured: true,
+    rating: 4.7,
+    reviews: 64
   },
   {
     id: '4',
@@ -102,9 +107,11 @@ const products: Product[] = [
     description: 'Teclado mecânico com iluminação RGB',
     price: 499.99,
     category: 'peripherals',
-    image: 'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    stock: 20,
-    featured: true
+    images: ['https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'],
+    inStock: true,
+    featured: true,
+    rating: 4.6,
+    reviews: 256
   }
 ];
 
@@ -112,4 +119,32 @@ export function getFeaturedProducts(): Product[] {
   return products.filter(product => product.featured);
 }
 
-export { products }
+export function filterProducts(options: FilterOptions): Product[] {
+  return products.filter(product => {
+    if (options.category && product.category !== options.category) return false;
+    if (options.minPrice && product.price < options.minPrice) return false;
+    if (options.maxPrice && product.price > options.maxPrice) return false;
+    if (options.inStock === true && !product.inStock) return false;
+    if (options.search && !product.name.toLowerCase().includes(options.search.toLowerCase()) && 
+        !product.description.toLowerCase().includes(options.search.toLowerCase())) return false;
+    
+    return true;
+  }).sort((a, b) => {
+    if (!options.sortBy) return 0;
+    
+    switch (options.sortBy) {
+      case 'preco-asc':
+        return a.price - b.price;
+      case 'preco-desc':
+        return b.price - a.price;
+      case 'avaliacao':
+        return b.rating - a.rating;
+      case 'novos':
+        return parseInt(b.id) - parseInt(a.id);
+      default:
+        return 0;
+    }
+  });
+}
+
+export { products };
