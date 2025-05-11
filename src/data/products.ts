@@ -53,7 +53,7 @@ export const products: Product[] = [
   },
   {
     id: '2',
-    name: 'Teclado Mecânico Gamer',
+    name: 'Teclado Mecânico RGB',
     description: 'Teclado mecânico RGB com switches hot-swap, estrutura em alumínio e iluminação personalizável.',
     price: 799.99,
     images: [
@@ -110,6 +110,27 @@ export const products: Product[] = [
       'Bandas': 'Tri-band',
       'Portas': '4x Gigabit LAN',
       'Cobertura': 'Até 230m²'
+    }
+  },
+  {
+    id: '5',
+    name: 'Mouse Gamer Pro',
+    description: 'Mouse gamer profissional com sensor óptico de alta precisão, switches mecânicos e iluminação RGB personalizável.',
+    price: 399.99,
+    discountedPrice: 349.99,
+    images: [
+      'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ],
+    category: 'peripherals',
+    featured: true,
+    inStock: true,
+    rating: 4.8,
+    reviews: 245,
+    specifications: {
+      'Sensor': 'Óptico 26.000 DPI',
+      'Switches': 'Mecânicos 80M clicks',
+      'Peso': '89g',
+      'Conexão': 'USB-C / Wireless'
     }
   }
 ];
