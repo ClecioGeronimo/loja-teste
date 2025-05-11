@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Seção Hero */}
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 z-10" />
         <div 
@@ -22,22 +22,22 @@ const HomePage: React.FC = () => {
           <div className="container mx-auto px-4 h-full flex items-center relative z-20">
             <div className="max-w-xl text-white">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                Discover Premium Quality Products
+                Descubra Produtos de Qualidade Premium
               </h1>
               <p className="text-lg md:text-xl mb-8 text-gray-200">
-                Shop our curated collection of high-quality products. 
-                From electronics to fashion, find everything you need with 
-                premium quality and exceptional value.
+                Explore nossa coleção selecionada de produtos de alta qualidade. 
+                De eletrônicos a periféricos, encontre tudo que você precisa com 
+                qualidade premium e preços competitivos.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/products">
                   <Button size="lg">
-                    Shop Now
+                    Comprar Agora
                   </Button>
                 </Link>
                 <Link to="/sale">
                   <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">
-                    View Sales
+                    Ver Promoções
                   </Button>
                 </Link>
               </div>
@@ -46,13 +46,13 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Categories Section */}
+      {/* Seção de Categorias */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Shop by Category</h2>
+            <h2 className="text-3xl font-bold mb-4">Compre por Categoria</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Browse our wide selection of products across multiple categories
+              Navegue por nossa ampla seleção de produtos em diversas categorias
             </p>
           </div>
           
@@ -73,7 +73,7 @@ const HomePage: React.FC = () => {
                   <h3 className="text-xl font-bold mb-1">{category.name}</h3>
                   <p className="text-sm text-gray-200 mb-3">{category.description}</p>
                   <span className="flex items-center text-sm font-medium">
-                    Shop Now <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    Ver Produtos <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </Link>
@@ -82,18 +82,18 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Seção de Produtos em Destaque */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
+              <h2 className="text-3xl font-bold mb-4">Produtos em Destaque</h2>
               <p className="text-gray-600">
-                Discover our handpicked selection of premium products
+                Descubra nossa seleção especial de produtos premium
               </p>
             </div>
             <Link to="/products" className="hidden sm:flex items-center text-blue-600 hover:text-blue-700 font-medium">
-              View All <ArrowRight size={16} className="ml-2" />
+              Ver Todos <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
           
@@ -106,14 +106,14 @@ const HomePage: React.FC = () => {
           <div className="mt-8 text-center sm:hidden">
             <Link to="/products">
               <Button variant="outline">
-                View All Products <ArrowRight size={16} className="ml-2" />
+                Ver Todos os Produtos <ArrowRight size={16} className="ml-2" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Seção de Recursos */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -121,9 +121,9 @@ const HomePage: React.FC = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-full mb-6">
                 <Truck className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Free Shipping</h3>
+              <h3 className="text-xl font-bold mb-2">Frete Grátis</h3>
               <p className="text-gray-600">
-                Enjoy free shipping on all orders over $50. Fast and reliable delivery to your doorstep.
+                Aproveite frete grátis em compras acima de R$ 250. Entrega rápida e segura até você.
               </p>
             </div>
             
@@ -131,9 +131,9 @@ const HomePage: React.FC = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-full mb-6">
                 <Shield className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Secure Payments</h3>
+              <h3 className="text-xl font-bold mb-2">Pagamento Seguro</h3>
               <p className="text-gray-600">
-                Shop with confidence with our secure payment options and buyer protection.
+                Compre com segurança usando nossos métodos de pagamento protegidos e garantia de satisfação.
               </p>
             </div>
             
@@ -141,38 +141,38 @@ const HomePage: React.FC = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 rounded-full mb-6">
                 <Phone className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold mb-2">24/7 Support</h3>
+              <h3 className="text-xl font-bold mb-2">Suporte 24/7</h3>
               <p className="text-gray-600">
-                Our customer service team is available 24/7 to assist you with any questions.
+                Nossa equipe de atendimento está disponível 24 horas por dia para ajudar você.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Seção Newsletter */}
       <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Join Our Newsletter</h2>
+            <h2 className="text-3xl font-bold mb-4">Assine Nossa Newsletter</h2>
             <p className="text-blue-100 mb-8">
-              Subscribe to receive updates on new products, special offers, and more.
+              Inscreva-se para receber atualizações sobre novos produtos, ofertas especiais e mais.
             </p>
             
             <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
               <input
                 type="email"
-                placeholder="Your email address"
+                placeholder="Seu endereço de e-mail"
                 className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
                 required
               />
               <Button variant="secondary" type="submit" className="whitespace-nowrap">
-                Subscribe
+                Assinar
               </Button>
             </form>
             
             <p className="mt-4 text-sm text-blue-200">
-              We respect your privacy. Unsubscribe at any time.
+              Respeitamos sua privacidade. Cancele a inscrição a qualquer momento.
             </p>
           </div>
         </div>
