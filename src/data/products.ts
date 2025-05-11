@@ -110,3 +110,5 @@ const products: Product[] = [
 export function getFeaturedProducts(): Product[] {
   return products.filter(product => product.featured);
 }
+
+export { products }
