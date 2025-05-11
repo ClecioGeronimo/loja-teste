@@ -1,4 +1,5 @@
 import { Product, Category } from '../types';
+import { getFeaturedProducts } from '/src/data/products';
 
 export const categories: Category[] = [
   {
