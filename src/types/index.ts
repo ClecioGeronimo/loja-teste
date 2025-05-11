@@ -53,7 +53,7 @@ export interface Order {
     email: string;
   };
   date: string;
-  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  status: 'pendente' | 'processando' | 'concluído' | 'cancelado';
   total: number;
   items: {
     product: Product;

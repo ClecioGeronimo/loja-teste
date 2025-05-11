@@ -14,26 +14,26 @@ const WishlistContext = createContext<WishlistContextType | undefined>(undefined
 export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<Product[]>([]);
 
-  // Load wishlist from localStorage on component mount
+  // Carregar lista de desejos do localStorage ao montar o componente
   useEffect(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     if (savedWishlist) {
       try {
         setItems(JSON.parse(savedWishlist));
       } catch (error) {
-        console.error('Failed to parse wishlist from localStorage:', error);
+        console.error('Falha ao carregar lista de desejos do localStorage:', error);
       }
     }
   }, []);
 
-  // Save wishlist to localStorage whenever it changes
+  // Salvar lista de desejos no localStorage quando houver alterações
   useEffect(() => {
     localStorage.setItem('wishlist', JSON.stringify(items));
   }, [items]);
 
   const addToWishlist = (product: Product) => {
     setItems(prevItems => {
-      // Only add if it doesn't already exist
+      // Adicionar apenas se não existir
       if (!prevItems.some(item => item.id === product.id)) {
         return [...prevItems, product];
       }
@@ -69,7 +69,7 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 export const useWishlist = (): WishlistContextType => {
   const context = useContext(WishlistContext);
   if (context === undefined) {
-    throw new Error('useWishlist must be used within a WishlistProvider');
+    throw new Error('useWishlist deve ser usado dentro de um WishlistProvider');
   }
   return context;
 };
