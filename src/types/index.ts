@@ -28,7 +28,7 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
-  role?: 'user' | 'admin';
+  role?: 'usuario' | 'admin';
 }
 
 export interface Category {
@@ -43,7 +43,7 @@ export interface FilterOptions {
   minPrice?: number;
   maxPrice?: number;
   inStock?: boolean;
-  sortBy?: 'price-asc' | 'price-desc' | 'rating' | 'newest';
+  sortBy?: 'preco-asc' | 'preco-desc' | 'avaliacao' | 'novos';
 }
 
 export interface Order {
@@ -53,7 +53,7 @@ export interface Order {
     email: string;
   };
   date: string;
-  status: 'pendente' | 'processando' | 'concluído' | 'cancelado';
+  status: 'pendente' | 'processando' | 'concluido' | 'cancelado';
   total: number;
   items: {
     product: Product;
