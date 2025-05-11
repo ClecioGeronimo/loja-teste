@@ -23,6 +23,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
   
+  // Você pode modificar as cores dos botões aqui
+  // Altere as classes do Tailwind para personalizar as cores
+  // Exemplo: bg-blue-600 para mudar a cor primária
   const variantClasses = {
     primary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 focus:ring-blue-500',
     secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800 focus:ring-secondary-500',
@@ -31,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
     danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 focus:ring-red-500',
   };
   
+  // Você pode ajustar os tamanhos dos botões aqui
   const sizeClasses = {
     sm: 'text-sm px-3 py-2 h-9',
     md: 'text-base px-4 py-2 h-10',
