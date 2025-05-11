@@ -9,8 +9,8 @@ const LoginPage: React.FC = () => {
   const { login, isLoading } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState('demo@example.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('demo@exemplo.com');
+  const [password, setPassword] = useState('senha123');
   const [error, setError] = useState('');
   
   // Parse redirect parameter from URL
@@ -33,12 +33,12 @@ const LoginPage: React.FC = () => {
     <div className="pt-20 min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign in to your account
+          Entre na sua conta
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Or{' '}
+          Ou{' '}
           <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-            create a new account
+            crie uma nova conta
           </Link>
         </p>
       </div>
@@ -53,7 +53,7 @@ const LoginPage: React.FC = () => {
           
           <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
-              label="Email address"
+              label="Endereço de e-mail"
               id="email"
               name="email"
               type="email"
@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
             />
 
             <Input
-              label="Password"
+              label="Senha"
               id="password"
               name="password"
               type="password"
@@ -87,13 +87,13 @@ const LoginPage: React.FC = () => {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
+                  Lembrar-me
                 </label>
               </div>
 
               <div className="text-sm">
                 <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot your password?
+                  Esqueceu sua senha?
                 </Link>
               </div>
             </div>
@@ -107,7 +107,7 @@ const LoginPage: React.FC = () => {
                 fullWidth
                 leftIcon={<LogIn size={18} />}
               >
-                Sign in
+                Entrar
               </Button>
             </div>
           </form>
@@ -118,7 +118,7 @@ const LoginPage: React.FC = () => {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">Ou continue com</span>
               </div>
             </div>
 
@@ -130,7 +130,7 @@ const LoginPage: React.FC = () => {
                   fullWidth
                   leftIcon={<UserPlus size={18} />}
                 >
-                  Create an account
+                  Criar uma conta
                 </Button>
               </Link>
             </div>
